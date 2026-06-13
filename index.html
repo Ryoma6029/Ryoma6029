@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="修士課程学生の研究ポートフォリオサイト。圧電センサを用いた心音波形復元に関する研究。">
+    <meta name="theme-color" content="#e8f4f8">
+    <title>研究ポートフォリオ | 修士課程1年</title>
+    <style>
+        /* ========================================
+           リセット・基本スタイル
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif;
+            background-color: #ffffff;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           カラーパレット
+           ======================================== */
+        :root {
+            --primary-light: #e8f4f8;
+            --primary-accent: #6db3d4;
+            --primary-dark: #4a8fa8;
+            --secondary-gray: #e8e8e8;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-color: #d0d0d0;
+            --success: #27ae60;
+            --white: #ffffff;
+        }
+
+        /* ========================================
+           タイポグラフィ
+           ======================================== */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-light);
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        a {
+            color: var(--primary-accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+
+        a:focus {
+            outline: 2px solid var(--primary-dark);
+            outline-offset: 2px;
+        }
+
+        /* ========================================
+           ヘッダー・ナビゲーション
+           ======================================== */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--secondary-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-accent);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           ハンバーガーメニュー（モバイル）
+           ======================================== */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                border-bottom: 1px solid var(--secondary-gray);
+                padding: 1rem 2rem;
+                z-index: 99;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-container {
+                flex-wrap: wrap;
+            }
+        }
+
+        /* ========================================
+           メインコンテンツ
+           ======================================== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        main {
+            min-height: 100vh;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--secondary-gray);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* ========================================
+           ヒーロー・イントロセクション
+           ======================================== */
+        #intro {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #f0f9fb 100%);
+            padding: 5rem 2rem;
+        }
+
+        .intro-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .intro-title {
+            margin-bottom: 1rem;
+        }
+
+        .affiliation {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .research-theme {
+            background-color: rgba(255, 255, 255, 0.6);
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-accent);
+            margin-top: 2rem;
+            border-radius: 4px;
+        }
+
+        .research-theme strong {
+            color: var(--text-dark);
+        }
+
+        /* ========================================
+           プロファイルセクション
+           ======================================== */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-box {
+            background-color: var(--primary-light);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #d0e8f2;
+        }
+
+        .profile-box h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .profile-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .profile-item-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            min-width: 120px;
+        }
+
+        .profile-item-value {
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* ========================================
+           リサーチサマリー
+           ======================================== */
+        .research-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-item {
+            background-color: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #d0e8f2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .research-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(106, 179, 212, 0.15);
+        }
+
+        .research-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .research-item p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 768px) {
+            .research-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           プロジェクト・スキルセクション
+           ======================================== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border: 1px solid var(--secondary-gray);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #d0e8f2;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           スキルセクション
+           ======================================== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #d0e8f2;
+        }
+
+        .skill-category h4 {
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-item {
+            background-color: var(--white);
+            border: 1px solid #d0e8f2;
+            color: var(--text-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           パブリケーションセクション
+           ======================================== */
+        .publication-item {
+            border-left: 4px solid var(--primary-accent);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .publication-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .publication-item h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.35rem 0.75rem;
+            background-color: var(--primary-light);
+            border: 1px solid #d0e8f2;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .publication-link:hover {
+            background-color: var(--primary-accent);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           コンタクトセクション
+           ======================================== */
+        #contact {
+            background-color: var(--primary-light);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            min-width: 80px;
+        }
+
+        .contact-value {
+            color: var(--text-light);
+            word-break: break-all;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--white);
+            border: 1px solid #d0e8f2;
+            border-radius: 6px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(106, 179, 212, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-accent);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .submit-btn:focus {
+            outline: 2px solid var(--primary-dark);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           フッター
+           ======================================== */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--primary-light);
+        }
+
+        footer a:hover {
+            color: var(--white);
+        }
+
+        /* ========================================
+           ユーティリティ
+           ======================================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-accent);
+            color: var(--white);
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        /* ========================================
+           レスポンシブデザイン
+           ======================================== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 2.5rem 0;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .intro-content {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            .header-container {
+                padding: 0.75rem 1rem;
+            }
+
+            section {
+                padding: 1.5rem 0;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .profile-box {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========================================
+         ヘッダー・ナビゲーション
+         ======================================== -->
+    <header>
+        <div class="header-container">
+            <div class="logo">研究ポートフォリオ</div>
+            <button class="menu-toggle" aria-label="メニュー" aria-expanded="false">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#intro">ホーム</a></li>
+                    <li><a href="#profile">プロファイル</a></li>
+                    <li><a href="#research">研究</a></li>
+                    <li><a href="#projects">プロジェクト</a></li>
+                    <li><a href="#skills">スキル</a></li>
+                    <li><a href="#publications">パブリケーション</a></li>
+                    <li><a href="#contact">コンタクト</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========================================
+         メインコンテンツ
+         ======================================== -->
+    <main>
+        <!-- イントロセクション -->
+        <section id="intro">
+            <div class="intro-content">
+                <h1 class="intro-title">研究ポートフォリオ</h1>
+                <div class="affiliation">日本大学大学院 理工学研究科 電子工学専攻</div>
+                <div class="affiliation">佐々木研究室 修士課程1年</div>
+                <div class="research-theme">
+                    <strong>研究テーマ</strong>
+                    <p>圧電センサを用いた継続的健康モニタリングのための心音検出に対する検討</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロファイルセクション -->
+        <section id="profile">
+            <div class="container">
+                <h2>プロファイル</h2>
+                <div class="profile-container">
+                    <div class="profile-box">
+                        <h3>基本情報</h3>
+                        <div class="profile-item">
+                            <div class="profile-item-label">大学</div>
+                            <div class="profile-item-value">日本大学大学院</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-label">研究科</div>
+                            <div class="profile-item-value">理工学研究科</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-label">専攻</div>
+                            <div class="profile-item-value">電子工学専攻</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-label">学年</div>
+                            <div class="profile-item-value">修士課程1年</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-label">研究室</div>
+                            <div class="profile-item-value">佐々木研究室</div>
+                        </div>
+                    </div>
+                    <div class="profile-box">
+                        <h3>関心分野</h3>
+                        <div class="profile-item">
+                            <div class="profile-item-value">・生体信号計測</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-value">・ウェアラブルセンサ</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-value">・信号処理・データ解析</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-value">・AI</div>
+                        </div>
+                        <div class="profile-item">
+                            <div class="profile-item-value">・医療・ヘルスケア工学</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 研究セクション -->
+        <section id="research">
+            <div class="container">
+                <h2>研究概要</h2>
+                <div class="research-summary">
+                    <div class="research-item">
+                        <h4>背景</h4>
+                        <p>心音は心臓の状態を把握できる重要な生体情報であるが、一般的な聴診は胸部での一時的な計測が中心であり、日常生活中に継続して心音を取得することは難しい。また、胸部以外の部位では心音が弱くなり、環境音や体動、圧電素子特有のノイズが混入しやすいという課題がある。</p>
+                    </div>
+                    <div class="research-item">
+                        <h4>目的</h4>
+                        <p>本研究では、胸部以外の部位、特に手首など日常的に装着しやすい部位から心音を取得し、正常音や異常音の検出につなげることを目的とする。将来的には、ウェアラブルデバイスによる継続的な心音モニタリングを実現し、心疾患の早期発見や健康管理への応用を目指す。</p>
+                    </div>
+                    <div class="research-item">
+                        <h4>手法</h4>
+                        <p>圧電素子を用いて心音を計測し、取得した波形から第Ⅰ音・第Ⅱ音などの心音成分を確認する。また、計測条件や回路条件を変えながらノイズの発生要因を調査し、さらにAIを用いて圧電素子で計測した心音波形と標本データとの差異を学習させることで、ノイズを含む計測波形から心音成分を復元する方法を検討している。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロジェクトセクション -->
+        <section id="projects">
+            <div class="container">
+                <h2>プロジェクト</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>胸部以外での心音計測の検討</h3>
+                        <p>圧電素子を用いて、胸部以外の部位から心音を取得できるかを測定波形から検討しました。</p>
+                        <div class="tags">
+                            <span class="tag">圧電素子</span>
+                            <span class="tag">オシロスコープ</span>
+                            <span class="tag">CSVデータ取得</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>心音計測時のノイズ要因解析</h3>
+                        <p>測定条件や回路条件を変えながら、心音に混入するノイズの発生要因を調査しました。</p>
+                        <div class="tags">
+                            <span class="tag">時間波形解析</span>
+                            <span class="tag">FFT解析</span>
+                            <span class="tag">比較実験</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>AIによる心音波形復元</h3>
+                        <p>圧電素子で計測したノイズ混在信号から、心音成分を復元するモデルを検討している。</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">深層学習</span>
+                            <span class="tag">AI</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>心音データ前処理・心拍分割システム</h3>
+                        <p>20秒間の心音データを解析しやすい形に整え、心拍ごとの波形への分割を行うシステムを構築しました。</p>
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">データ分析</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- スキルセクション -->
+        <section id="skills">
+            <div class="container">
+                <h2>スキル</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h4>プログラミング言語</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">Python</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>データ分析</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">データの時間ずれ補正</span>
+                            <span class="skill-item">心拍の分割</span>
+                            <span class="skill-item">音声データへの変換</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>AI学習</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">深層学習</span>
+                            <span class="skill-item">ニューラルネットワーク</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>その他のツール</h4>
+                        <div class="skill-list">
+                            <span class="skill-item">google colaboratory</span>
+                            <span class="skill-item">excel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- パブリケーションセクション -->
+        <section id="publications">
+            <div class="container">
+                <h2>パブリケーション</h2>
+                <div class="publication-item">
+                    <h4></h4>継続的健康モニタリングのためのリストバンド実装に向けた圧電素子による心音測定に対する一検討
+                    <div class="publication-meta">日本大学理工学部 学術講演会, 2025年</div>
+                    <p>リストバンド型デバイスによる継続的な健康モニタリングの実現に向け、圧電素子を用いた心音測定の基礎的な検討結果を報告しました。</p>
+                    <a href="https://www.cst.nihon-u.ac.jp/research/gakujutu/69/pdf/M-11.pdf" class="publication-link" target="_blank">論文を閲覧</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- コンタクトセクション -->
+        <section id="contact">
+            <div class="container">
+                <h2>コンタクト</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>お問い合わせ</h3>
+                        <div class="contact-item">
+                            <span class="contact-label">メール</span>
+                            <span class="contact-value">
+                                <a href="mailto:your.email@example.com">csro26029@g.nihon-u.ac.jp </a>
+                            </span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">大学</span>
+                            <span class="contact-value">日本大学大学院 理工学研究科</span>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-label">研究室</span>
+                            <span class="contact-value">佐々木研究室</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="GitHub">GH</a>
+                            <a href="#" class="social-link" aria-label="Twitter">TW</a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+                        </div>
+                    </div>
+                    <form class="contact-form" aria-label="コンタクトフォーム">
+                        <div class="form-group">
+                            <label for="name">名前</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">件名</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">メッセージ</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">送信</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========================================
+         フッター
+         ======================================== -->
+    <footer>
+        <p>&copy; 2026 修士課程研究ポートフォリオ. All rights reserved.</p>
+        <p><a href="#intro">ページトップへ</a></p>
+    </footer>
+
+    <!-- ========================================
+         JavaScript
+         ======================================== -->
+    <script>
+        // ハンバーガーメニュー操作
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', !isExpanded);
+            nav.classList.toggle('active');
+        });
+
+        // ナビゲーションリンククリック時にメニューを閉じる
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.setAttribute('aria-expanded', 'false');
+                nav.classList.remove('active');
+            });
+        });
+
+        // コンタクトフォーム送信（デモ用）
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('ご送信ありがとうございます。担当者より返信させていただきます。');
+                contactForm.reset();
+            });
+        }
+
+        // スムーススクロール補正（スティッキーヘッダー対応）
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
